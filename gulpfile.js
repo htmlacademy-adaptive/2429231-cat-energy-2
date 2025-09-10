@@ -15,6 +15,7 @@ import svgo from 'gulp-svgmin';
 import { stacksvg } from 'gulp-stacksvg';
 import server from 'browser-sync';
 import bemlinter from 'gulp-html-bemlinter';
+import autoprefixer from 'autoprefixer';
 
 const { src, dest, watch, series, parallel } = gulp;
 const sass = gulpSass(dartSass);
@@ -49,6 +50,7 @@ export function processStyles () {
     .pipe(plumber())
     .pipe(sass().on('error', sass.logError))
     .pipe(postcss([
+      autoprefixer(),
       postUrl([
         {
           filter: '**/*',
